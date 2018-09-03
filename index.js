@@ -15,21 +15,25 @@
 // });
 
 const fs = require ('fs');
-// const regular = /^(http|https)\:\/\/[a-z0-9\.-]+\.[a-z]{2,4}/gim;
-let url='';
 const readmeFile = (callback) => {
   fs.readFile('./README.md','utf8', (error,dato)=> {
     if (error) {
       throw  error;
     } else {
-      // url = dato.match(regular);
      callback(dato);
     }
   })
 };
 
 const callback = (dato) =>{
-  // console.log(dato)
+  const re =  /\[.+?]/gim;
+  const regular = /^http:|https:\/\/[a-z0-9\.-]+\.[a-z]{2,4}/gim;
+  let links = dato.match(regular);
+  console.log(links);
+  links.forEach(element => {
+    
+  });
+  // console.log(dato);
 }
 readmeFile(callback);
 
