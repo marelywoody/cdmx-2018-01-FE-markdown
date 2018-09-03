@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/marelywoody/cdmx-2018-01-FE-markdown/issues"
   },
-  "homepage": "https://github.com/marelywoody/cdmx-2018-01-FE-markdown#readme"
+  "homepage": "https://github.com/marelywoody/cdmx-2018-01-FE-markdown#readme",
+  "directories": {
+    "test": "test"
+  }
 }

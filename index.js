@@ -11,8 +11,9 @@
 // });
 
 const fs = require('fs');
+const path = require('path');
 const mdLinks = (callback) => {
-  fs.readFile('./README.md', 'utf8', (error, dato)=> {
+  fs.readFile(path.resolve(__dirname, 'README.md'), 'utf8', (error, dato)=> {
     if (error) {
       throw error;
     } else {
@@ -22,11 +23,9 @@ const mdLinks = (callback) => {
 };
 
 const callback = (dato) =>{
-  const re = /\[.+?]/gim;
-  const regular = /^http:|https:\/\/[a-z0-9\.-]+\.[a-z]{2,4}/gim;
-  let links = dato.match(regular);
+  const regular = /(http:|https:)\/\/(\S*\w)?/gim;
+  const links = dato.match(regular);
   let urls;
-  // console.log(links);
   links.forEach(element => {
     urls = `'${element}'`;
     console.log(urls);
