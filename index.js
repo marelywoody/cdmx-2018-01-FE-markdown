@@ -15,7 +15,7 @@
 // });
 
 const fs = require ('fs');
-const regular = /^(http|https)\:\/\/[a-z0-9\.-]+\.[a-z]{2,4}/gim;
+// const regular = /^(http|https)\:\/\/[a-z0-9\.-]+\.[a-z]{2,4}/gim;
 let url='';
 const readmeFile = (callback) => {
   fs.readFile('./README.md','utf8', (error,dato)=> {
@@ -28,6 +28,12 @@ const readmeFile = (callback) => {
   })
 };
 
-readmeFile(callback = (dato) =>
-  console.log(dato)
-);
+const callback = (dato) =>{
+  // console.log(dato)
+}
+readmeFile(callback);
+
+module.exports = {
+  readmeFile,
+  callback
+};
