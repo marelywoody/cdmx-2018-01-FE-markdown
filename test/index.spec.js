@@ -1,4 +1,4 @@
-const { readmeFile, callback } = require('./index');
+const { readmeFile, callback } = require('../index');
 
 describe('readmeFile, es una función', () => {
   test('readmeFile, es una función', () => {

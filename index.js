@@ -14,27 +14,33 @@
 //   // console.log('Line number ' + lineno + ': ' + line);
 // });
 
-const fs = require ('fs');
+const fs = require('fs');
 const readmeFile = (callback) => {
-  fs.readFile('./README.md','utf8', (error,dato)=> {
+  fs.readFile('./README.md', 'utf8', (error, dato)=> {
     if (error) {
-      throw  error;
+      throw error;
     } else {
-     callback(dato);
+      callback(dato);
     }
-  })
+  });
 };
 
 const callback = (dato) =>{
-  const re =  /\[.+?]/gim;
+  const re = /\[.+?]/gim;
   const regular = /^http:|https:\/\/[a-z0-9\.-]+\.[a-z]{2,4}/gim;
   let links = dato.match(regular);
-  console.log(links);
+  let urls;
+  // console.log(links);
   links.forEach(element => {
-    
+    urls = `'${element}'`;
+    console.log(urls);
+    fetch(urls)
+      .then(resp => resp.json());
+    // fetch(urls)
+    // .then(res => console.log(res))
   });
   // console.log(dato);
-}
+};
 readmeFile(callback);
 
 module.exports = {
