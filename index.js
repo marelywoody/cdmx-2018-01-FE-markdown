@@ -1,17 +1,6 @@
-// let readline = require('readline');
-// let fs = require('fs');
-// let myInterface = readline.createInterface({
-//   input: fs.createReadStream('README.md')
-// });
-
-// let lineno = 0;
-// myInterface.on('line', line => {
-//   lineno++;
-//   // console.log(lineno + ': ' + line);
-// });
-
 const fs = require('fs');
 const path = require('path');
+
 const mdLinks = (callback) => {
   fs.readFile(path.resolve(__dirname, 'README.md'), 'utf8', (error, dato)=> {
     if (error) {
@@ -23,12 +12,18 @@ const mdLinks = (callback) => {
 };
 
 const callback = (dato) =>{
+  const reg = /((\[\S.*)\)|[\S.](http:|https:)\/\/(\S*\w)?)/gim;
+  const expRe = /\[[\S.]\]/gim;
   const regular = /(http:|https:)\/\/(\S*\w)?/gim;
+  const texts = dato.match(reg);
+  const textStr = texts.toString();
+  const text = textStr.match(expRe);
   const links = dato.match(regular);
   let urls;
+  console.log(text);
   links.forEach(element => {
     urls = `'${element}'`;
-    console.log(urls);
+    // console.log(urls);
     // .then(resp => resp.json());
     // fetch(urls)
     // .then(res => console.log(res))
