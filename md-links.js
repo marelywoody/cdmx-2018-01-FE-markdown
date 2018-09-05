@@ -1,14 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-
-readmeFiles = 'cdmx-2018-01-FE-markdown';
-console.log(path.resolve(readmeFiles));
+const fetch = require('node-fetch');
 
 const rutaFile = (ruta) => {
   if (path.isAbsolute(ruta) === true) {
     return ruta;
   } else {
-    let pathAbs = path.resolve(ruta)
+    let pathAbs = path.resolve(ruta);
     return pathAbs;
   }
 };
@@ -31,11 +29,11 @@ const callback = (dato) =>{
   const texts = dato.match(reg);
   const textStr = texts.toString();
   const text = textStr.match(expRe);
-  // console.log(text);
-  let urls;
   links.forEach(elementLink => {
-    // urls = `'${element}'`;
-    // console.log(elementLink);
+    let urls = `${elementLink}`;
+    fetch(urls).then((res) => {
+      return res.status;
+    });
   });
   text.forEach(elementText => {
     // console.log(elementText);
