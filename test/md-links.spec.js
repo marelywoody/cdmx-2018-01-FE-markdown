@@ -1,4 +1,4 @@
-const { mdLinks, callback } = require('../index');
+const { mdLinks, callback } = require('../md-links');
 
 describe('mdLinks, es una función', () => {
   test('mdLinks, es una función', () => {
