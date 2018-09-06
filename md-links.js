@@ -29,22 +29,25 @@ const callback = (dato) =>{
   const texts = dato.match(reg);
   const textStr = texts.toString();
   const text = textStr.match(expRe);
-  resquest(links, text);
+  resquest(links);
+  return text;
+  // text.forEach(elementText => {
+  // });
 };
 
 const resquest = (links, text) => {
+  let status;
   links.forEach(elementLink => {
     fetch(elementLink).then((res) => {
-      // console.log(elementLink);
-      if (res.status === 200) {
-        // console.log(res.status);
+      stats = res.status;
+      if (stats === 200) {
+        console.log(stats + ' OK');
       } else {
-        console.log(res.status);
+        console.log(stats + ' FAIL');
       }
     });
   });
-  text.forEach(elementText => {
-  });
+  return status;
 };
 
 mdLinks(callback);
