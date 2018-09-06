@@ -30,24 +30,22 @@ const callback = (dato) =>{
   const textStr = texts.toString();
   const text = textStr.match(expRe);
   resquest(links);
-  return text;
   // text.forEach(elementText => {
   // });
 };
 
-const resquest = (links, text) => {
-  let status;
+const resquest = (links) => {
+  let statusElements = '';
   links.forEach(elementLink => {
     fetch(elementLink).then((res) => {
-      stats = res.status;
+      let stats = res.status;
       if (stats === 200) {
-        console.log(stats + ' OK');
+        console.log(`${elementLink} ${stats}  OK`);
       } else {
-        console.log(stats + ' FAIL');
+        console.log(`${elementLink} ${stats} FAIL`);
       }
     });
   });
-  return status;
 };
 
 mdLinks(callback);
