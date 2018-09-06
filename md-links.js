@@ -29,14 +29,21 @@ const callback = (dato) =>{
   const texts = dato.match(reg);
   const textStr = texts.toString();
   const text = textStr.match(expRe);
+  resquest(links, text);
+};
+
+const resquest = (links, text) => {
   links.forEach(elementLink => {
-    let urls = `${elementLink}`;
-    fetch(urls).then((res) => {
-      return res.status;
+    fetch(elementLink).then((res) => {
+      // console.log(elementLink);
+      if (res.status === 200) {
+        // console.log(res.status);
+      } else {
+        console.log(res.status);
+      }
     });
   });
   text.forEach(elementText => {
-    // console.log(elementText);
   });
 };
 
