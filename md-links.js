@@ -3,25 +3,21 @@ const path = require('path');
 const fetch = require('node-fetch');
 
 const rutaFile = (ruta) => {
-  if (path.isAbsolute(ruta) === true) {
-    return ruta;
-  } else {
-    let pathAbs = path.resolve(ruta);
-    return pathAbs;
-  }
+  const pathAbs = path.resolve(ruta);
+  return pathAbs;
 };
 
-const mdLinks = (callback) => {
+const mdLinks = (readFiles) => {
   fs.readFile(rutaFile('./README.md'), 'utf8', (error, dato)=> {
     if (error) {
       throw error;
     } else {
-      callback(dato);
+      return readFiles(dato);
     }
   });
 };
 
-const callback = (dato) =>{
+const readFiles = (dato) =>{
   const reg = /((\[\S.*)\)|[\S.](http:|https:)\/\/(\S*\w)?)/gim;
   const expRe = /\[.+?\]/gi;
   const regular = /(http:|https:)\/\/(\S*\w)?/gim;
@@ -29,7 +25,7 @@ const callback = (dato) =>{
   const texts = dato.match(reg);
   const textStr = texts.toString();
   const text = textStr.match(expRe);
-  resquest(links);
+  return resquest(links);
   // text.forEach(elementText => {
   // });
 };
@@ -38,7 +34,7 @@ const resquest = (links) => {
   let statusElements = '';
   links.forEach(elementLink => {
     fetch(elementLink).then((res) => {
-      let stats = res.status;
+      const stats = res.status;
       if (stats === 200) {
         console.log(`${elementLink} ${stats}  OK`);
       } else {
@@ -48,9 +44,10 @@ const resquest = (links) => {
   });
 };
 
-mdLinks(callback);
+mdLinks(readFiles);
 
 module.exports = {
   mdLinks,
-  callback
+  readFiles,
+  resquest
 };

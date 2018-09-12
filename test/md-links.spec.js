@@ -1,10 +1,13 @@
-const { mdLinks, callback } = require('../md-links');
+const { mdLinks, readFiles, resquest } = require('../md-links');
 
 describe('mdLinks, es una función', () => {
   test('mdLinks, es una función', () => {
-    expect(typeof mdLinks).toBe('function');
+    expect(typeof mdLinks).toEqual('function');
   });
-  test('callback, es una función', () => {
-    expect(typeof callback).toBe('function');
+  test('readFiles, es una función', () => {
+    expect(typeof readFiles).toBe('function');
+  });
+  test('resquest, es una función', () => {
+    expect(typeof (resquest)).toBe('function');
   });
 });
