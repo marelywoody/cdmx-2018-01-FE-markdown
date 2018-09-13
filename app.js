@@ -19,8 +19,11 @@ const mdLinks = () => {
   });
 };
 
-const readFiles = (dato) => {
+const readFiles = (error, dato) => {
   return new Promise((resolve, reject) => {
+    if (error) {
+      return reject(error);
+    } else {
       const reg = /((\[\S.*)\)|[\S.](http:|https:)\/\/(\S*\w)?)/gim;
       const expRe = /\[.+?\]/gi;
       const regular = /(http:|https:)\/\/(\S*\w)?/gim;
@@ -31,11 +34,15 @@ const readFiles = (dato) => {
       return resolve(links);
       // text.forEach(elementText => {
       // });
+    }
   });
 };
 
-const resquest = (links) => {
+const resquest = (error, links) => {
   return new Promise((resolve, reject) => {
+    if (error) {
+      return reject(error);
+    } else {
       let statusElements = '';
       links.forEach(elementLink => {
         fetch(elementLink).then((res) => {
@@ -50,6 +57,7 @@ const resquest = (links) => {
         });
       });
       return resolve(statusElements);
+    }
   });
 };
 
