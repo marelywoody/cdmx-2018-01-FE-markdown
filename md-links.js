@@ -38,7 +38,7 @@ const resquest = (links) => {
       if (stats === 200) {
         console.log(`${elementLink} ${stats}  OK`);
       } else {
-        console.log(`${elementLink} ${stats} FAIL`);
+        // console.log(`${elementLink} ${stats} FAIL`);
       }
     });
   });
